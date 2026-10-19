@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "snapclip"
+version = "0.1.0"
+description = "Ponte de clipboard e screenshots do Windows para fluxos de trabalho com IA (CLI + MCP)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Ney", email = "323012633+fenixbraz@users.noreply.github.com" }]
+keywords = ["clipboard", "screenshot", "windows", "mcp", "ai", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "Pillow>=10.0",
+    "pywin32>=306",
+    "mcp>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+snapclip = "snapclip.cli:main"
+snapclip-mcp = "snapclip.mcp_server:main"
+
+[project.urls]
+Homepage = "https://github.com/fenixbraz/snapclip"
+Issues = "https://github.com/fenixbraz/snapclip/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+snapclip = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
